@@ -538,8 +538,8 @@ exit
 ::===========================================================================
 
 set Online=1
-set KMS_IP=192.168.101.26
-set KMS_Port=1688
+set KMS_IP=10.30.153.167
+set KMS_Port=8080
 If defined Renewal_Task call :Re_Activate>>"%windir%\Online_KMS_Activation_Script\logfile.txt"&exit
 If defined Run_Once call :Re_Activate>>"%windir%\Online_KMS_Activation_Script\logfile.txt"&exit
 :Re_Activate
@@ -553,7 +553,7 @@ if defined Renewal_Task set /a max_loop=3
 if defined Run_Once set /a max_loop=5
 :repeat
 Echo Kiem tra Ket noi Internet...
-ping 10.30.152.20 -n 1 -w 10000 > nul || (
+ping 10.30.153.167 -n 1 -w 10000 > nul || (
    if %loop%== %max_loop% (
         echo Internet khong duoc Ket noi.
         if defined Renewal_Task Exit 1651565635 & Rem Dummy Numbers To Show Error In Task
@@ -571,7 +571,7 @@ echo Internet duoc Ket noi.
 
 setlocal EnableExtensions EnableDelayedExpansion
 set "servers="
-set "servers=%servers% 192.168.101.26"
+set "servers=%servers% 10.30.153.167"
 set n=1&for %%a in (%servers%) do (set server[!n!]=%%a&set /A n+=1)&set /a max_servers=!n!-1
 set server_num=1
 :server
